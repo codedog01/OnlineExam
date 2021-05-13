@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.exam.mapper.GradeMapper" >
+    <resultMap id="BaseResultMap" type="com.exam.model.Grade" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="user_id" property="userId" jdbcType="INTEGER" />
+        <result column="exam_id" property="examId" jdbcType="INTEGER" />
+        <result column="result" property="result" jdbcType="INTEGER" />
+        <result column="auto_result" property="autoResult" jdbcType="INTEGER" />
+        <result column="manul_result" property="manulResult" jdbcType="INTEGER" />
+        <result column="answer_json" property="answerJson" jdbcType="LONGVARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="auto_json" property="autoJson" jdbcType="LONGVARCHAR" />
+        <result column="manul_json" property="manulJson" jdbcType="LONGVARCHAR" />
+        <association property="user" javaType="com.exam.model.User">
+			<result property="username" jdbcType="VARCHAR" column="u_user_name"/>
+			<result property="nickname" jdbcType="VARCHAR" column="u_nick_name"/>
+			<result property="grade" jdbcType="VARCHAR" column="u_grade"/>
+		</association>
+		<association property="institute" javaType="com.exam.model.Institute" >
+			<result property="instituteName" jdbcType="VARCHAR" column="institute_name"/>
+        </association>
+        <association property="classes" javaType="com.exam.model.Classes" >
+			<result property="className" jdbcType="VARCHAR" column="class_name"/>
+        </association>
+        <association property="subject" javaType="com.exam.model.Subject" >
+			<result property="name" jdbcType="VARCHAR" column="s_subject_name"/>
+        </association>
+		<association property="examination" javaType="com.exam.model.Examination">
+			<result property="title" jdbcType="VARCHAR" column="exam_title"/>
+			<result property="totalScore" jdbcType="VARCHAR" column="exam_total_score"/>
+			<result property="classId" jdbcType="VARCHAR" column="exam_class_id"/>
+		</association>
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        id,user_id,exam_id,result,auto_result,manul_result,
+        answer_json,create_time,update_time,status
+    </sql>
+    
+    <select id="findByCondition" parameterType="com.exam.vo.GradeConditionVo" resultMap="BaseResultMap">
+    	SELECT
+    	a.*,
+    	u.username as u_user_name,
+    	u.nickname as u_nick_name,
+    	u.grade as u_grade,
+    	i.institute_name,
+    	c.class_name,
+    	e.title as exam_title,
+    	e.total_score as exam_total_score,
+    	subject.`name` AS s_subject_name
+    	FROM
+    	grade a
+    	INNER JOIN user u ON a.user_id = u.user_id
+    	INNER JOIN classes c ON u.class_id = c.id
+    	INNER JOIN institute i ON c.ins_id = i.id
+    	INNER JOIN examination e ON a.exam_id = e.id
+    	INNER JOIN subject ON e.subject_id = subject.id
+    	WHERE 1 = 1
+    	<if test="name != null and name != ''">
+    		AND u.nickname = #{name}
+    	</if>
+    	<if test="userId != null and userId != ''">
+    		AND u.user_id = #{userId}
+    	</if>
+    	<if test="stuId != null and stuId != ''">
+    		AND u.username = #{stuId}
+    	</if>
+    	<if test="examId != null and examId != ''">
+    		AND a.exam_id = #{examId}
+    	</if>
+    	<if test="author != null and author != ''">
+    		AND e.author = #{author}
+    	</if>
+    	<if test="grade != null and grade != ''">
+    		AND u.grade = #{grade}
+    	</if>
+    	<if test="insId != null">
+    		AND c.ins_id = #{insId}
+    	</if>
+    	<if test="classId != null">
+    		AND u.class_id = #{classId}
+    	</if>
+    	<if test="subjectId != null">
+    		AND e.subject_id = #{subjectId}
+    	</if>
+    	<if test="status != null">
+    		AND a.status = #{status}
+    	</if>
+    	<if test="keywords != null and keywords != ''">
+    		AND
+    		e.title LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%')
+    	</if>
+    	GROUP BY a.id
+    </select>
+    
+    <select id="selectById" parameterType="int" resultMap="BaseResultMap">
+    	SELECT
+    	a.*,
+    	e.title as exam_title,
+    	e.total_score as exam_total_score
+    	FROM
+    	grade a
+    	INNER JOIN examination e ON a.exam_id = e.id
+    	WHERE
+    	a.id = #{id}
+    </select>
+    
+    <select id="getUserNums" parameterType="com.exam.vo.StatisticConditionVo" resultType="Integer">
+	    SELECT IFNULL((SELECT 
+		count(u.user_id)
+		FROM
+		grade g
+		INNER JOIN examination e ON g.exam_id = e.id
+		INNER JOIN subject ON e.subject_id = subject.id
+		INNER JOIN user u ON g.user_id = u.user_id
+		INNER JOIN classes c ON u.class_id = c.id
+    	INNER JOIN institute i ON c.ins_id = i.id
+		WHERE 1 = 1
+		<if test="examId != null">
+			AND g.exam_id = #{examId}
+		</if>
+		<if test="status != null">
+			AND g.status = #{status}
+		</if>
+    	<if test="grade != null and grade != ''">
+    		AND u.grade = #{grade}
+    	</if>
+    	<if test="insId != null">
+    		AND c.ins_id = #{insId}
+    	</if>
+    	<if test="classId != null">
+    		AND u.class_id = #{classId}
+    	</if>
+    	<if test="subjectId != null">
+    		AND e.subject_id = #{subjectId}
+    	</if>
+		group by e.title),0)
+    </select>
+    
+    <delete id="deleteBatch" parameterType="map">
+    	DELETE
+    	FROM
+    	grade
+    	WHERE
+    	id in
+    	<foreach collection="array" item="item" index="index" open="(" separator="," close=")">
+    		#{item}
+    	</foreach>
+    </delete>
+</mapper>

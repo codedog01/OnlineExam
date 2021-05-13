@@ -1,0 +1,61 @@
+<meta charset="utf-8">
+<div th:fragment="footer" class="footer-grey footer-section">
+</div>
+<div th:fragment="copyrightDark"  class="copyright-dark copyright-section">
+	<p>Copyright © [[${#dates.format(new java.util.Date().getTime(), 'yyyy')}]]. [[${@module.get('sysConfig').SITE_NAME}]] · Powered by <a href="https://gitee.com/codedog01" target="_blank" title="在线考试系统">LengAo</a> </p>
+</div>
+<div th:fragment="copyrightLight"  class="copyright-light copyright-section">
+	<p>Copyright © [[${#dates.format(new java.util.Date().getTime(), 'yyyy')}]]. [[${@module.get('sysConfig').SITE_NAME}]] · Powered by <a href="https://gitee.com/codedog01" target="_blank" title="在线考试系统">LengAo</a> </p>
+</div>
+<div th:fragment="copyrightCommon"  class="copyright-common copyright-section">
+	<script>
+		/*加载底部前执行。ps：防止闪现
+         控制当页面内容过少时，底部仍在屏幕最下方
+         主体内容最小高度
+         */
+		var topHeight=60;//头部高度
+		var footerHeight=57;//底部高度
+		var contentMinHeight = $(window).height()-topHeight-footerHeight;
+		$(".main-content").css("min-height",contentMinHeight)
+		$(window).resize(function(){
+			var contentMinHeight = $(window).height()-topHeight-footerHeight;
+			$(".main-content").css("min-height",contentMinHeight)
+		})
+	</script>
+	<p>Copyright © [[${#dates.format(new java.util.Date().getTime(), 'yyyy')}]]. [[${@module.get('sysConfig').SITE_NAME}]] · Powered by <a href="https://gitee.com/codedog01" target="_blank" title="在线考试系统">LengAo</a> </p>
+</div>
+
+<div th:fragment="copyrightExamWeb" class="ui inverted vertical footer segment" style="background:#4F94CD">
+	<div class="ui container">
+		<div class="ui stackable inverted divided equal height stackable grid" style="padding-top:20px">
+			<div class="six wide column">
+				<h4 class="ui inverted header">项目介绍</h4>
+				<div class="ui inverted link list">
+					<p style="line-height:26px" th:text="${@module.get('sysConfig').SITE_DESC}"></p>
+				</div>
+			</div>
+			<div class="five wide column">
+				<h4 class="ui inverted header">友情链接</h4>
+				<div class="ui inverted link list">
+					<a class="item" th:each="item:${@module.get('linkList')}" th:href="${item.url}">
+						<p th:text="${item.name}" target="_blank"></p>
+					</a>
+				</div>
+			</div>
+			<div class="five wide column">
+				<h4 class="ui inverted header">联系我们</h4>
+				<div class="ui inverted link list">
+					<a class="item">电话：[[${@module.get('sysConfig').SITE_PHONE}]]</a>
+					<a class="item">传真：[[${@module.get('sysConfig').SITE_FAX}]]</a>
+					<a class="item">问题反馈：[[${@module.get('sysConfig').SITE_EMAIL}]]</a>
+					<a class="item">地址：[[${@module.get('sysConfig').SITE_ADDRESS}]]</a>
+				</div>
+			</div>
+		</div>
+		<div class="ui centered grid copyright-p">
+			<div class="column">
+				<p class="text-center">Copyright © 2018-[[${#dates.format(new java.util.Date().getTime(), 'yyyy')}]]. [[${@module.get('sysConfig').SITE_NAME}]] · Powered by <a href="https://gitee.com/codedog01" target="_blank" title="在线考试系统">LengAo</a> </p>
+			</div>
+		</div>
+	</div>
+</div>

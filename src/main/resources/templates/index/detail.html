@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title th:text="${@module.get('sysConfig').SITE_NAME}"></title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" th:href="@{/libs/bootstrap/bootstrap.min.css}"/>
+	<link rel="stylesheet" th:href="@{/libs/semantic-ui/semantic.min.css}" />
+	<link rel="stylesheet" th:href="@{/css/exam-common.css}"/>
+	<link rel="stylesheet" th:href="@{/css/web-common.css}"/>
+	<script th:src="@{/libs/jquery/jquery.min.js}"></script>
+	<script th:src="@{/libs/jquery/jquery.countdown.min.js}"></script>
+	<script th:src="@{/libs/bootstrap/bootstrap.min.js}"></script>
+    <script th:src="@{/libs/semantic-ui/semantic.min.js}"></script>
+    <script th:src="@{/libs/layer/layer.js}"></script>
+    <script th:src="@{/js/core.js}"></script>
+    <script th:src="@{/js/detail.js}"></script>
+	<script th:src="@{/js/Getface.js}"></script>
+</head>
+<body>
+<header id="header" class="nav-header">
+	<div th:replace="home/fragments/navbar :: navbar(activeUri='examiantion')"></div>
+</header>
+<div class="exam-content" style="padding-bottom:1em;margin-top:10px">
+	<p id="currentUserName" th:text="${session.userinf}" style="display: none"></p>
+	<div class="cover" style="display: none">
+		<!--提示-->
+		<div class="tipcover" >
+			<div>请您规范答题，否则系统将自动提交试卷!</div>
+			<div id="goOnBtn" style="cursor: pointer">点击继续答题</div>
+		</div>
+	</div>
+	<style>
+		.tipcover {
+			height: 200px;
+			width: 400px;
+			margin: 0 auto;
+			font-size: 18px;
+			z-index: 3;
+			margin-top:140px;
+			line-height: 100px;
+			border:solid 1px red;
+			background-color: white;
+		}
+
+		.cover{
+			background-color: rgba(0,0,0,.5);
+			width: 1519px;
+			height: 592px;
+			position: absolute;
+			z-index: 2;
+			text-align: center;
+			bottom:0;
+		}
+	</style>
+	<script>
+		$("#goOnBtn").on("click",function () {
+			$(".cover").css('display','none')
+		})
+
+		// 屏蔽f12
+		document.onkeydown = function(){
+
+			if(window.event && window.event.keyCode == 123) {
+				event.keyCode=0;
+				event.returnValue=false;
+			}
+			if(window.event && window.event.keyCode == 13) {
+				window.event.keyCode = 505;
+			}
+			if(window.event && window.event.keyCode == 8) {
+				alert(str+"\n请使用Del键进行字符的删除操作！");
+				window.event.returnValue=false;
+			}
+
+		}
+		// 屏蔽右键
+		document.oncontextmenu = function (event){
+			if(window.event){
+				event = window.event;
+			}try{
+				var the = event.srcElement;
+				if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")){
+					return false;
+				}
+				return true;
+			}catch (e){
+				return false;
+			}
+		}
+		// 屏蔽选中
+		document.onselectstart = function (event){
+			if(window.event){
+				event = window.event;
+			}try{
+				var the = event.srcElement;
+				if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")){
+					return false;
+				}
+				return true;
+			}catch (e) {
+				return false;
+			}
+		}
+
+		// 界面监听
+		var count=0;
+
+		document.addEventListener('visibilitychange',function(){
+			if(document.visibilityState==='hidden'){
+				count++;
+				if (count == 1) {
+					$(".cover").css('display','block');
+				}
+				if (count == 2) {
+					//自动提交试卷
+					examDetailPage.finishExamAction()
+				}
+			}
+		});
+	</script>
+
+	<div class="ui header container">
+	    <div class="ui large breadcrumb" th:each="exam:${data['exam']}">
+	        <a class="section" href="/exam/examination"><i class="home icon"></i>在线考试列表</a>
+	        <i class="right chevron icon divider"></i>
+	        <div class="section" th:value="${exam.id}" th:text="${exam.title}"></div>
+	    </div>
+	</div>
+	<div class="ui problemDetail container" th:each="exam:${data['exam']}">
+	    <div class="ui grid">
+	        <div class="ten wide column">
+	            <div class="row" style="padding-left: 2.5em">
+	                <div class="ui stacked segment">
+	                    <h4 class="ui horizontal divider header"><i class="help circle icon"></i>题目描述</h4>
+	                    <label id="currentQuetionTitle"></label>
+	                    <div class="grouped fields" id="currentQuestionAnswer"></div>
+	                </div>
+	            	<div id="preAndNextButton"></div>
+	            </div>
+				<!--摄像头-->
+				<div id="flag" class="tishi">正打开摄像头</div>
+				<div class="getface">
+					<video id="video" width="300px" height="300px" autoplay="autoplay"></video>
+					<canvas id="canvas" width="300px" height="300px" style="display: none;"></canvas>
+					<img id="imgTag" src="" alt="imgTag" style="display: none;">
+				</div>
+
+				<style>
+					.tishi{
+						margin: 0 auto;
+						width: 400px;
+						text-align: center;
+						font-size: 18px;
+						height: 40px;
+						line-height: 40px;
+						margin-top: -10px;
+					}
+					.getface{
+						overflow: hidden;
+						left: 235px;
+						bottom:15px;
+						height: 213px;
+						width: 300px;
+						margin: 0 auto;
+
+					}
+				</style>
+
+	        </div>
+
+	        <div class="five wide column" style="margin-left:2em">
+	            <div class="row">
+	                <table class="ui table">
+	                    <tbody>
+	                    <tr>
+	                        <td><span style="font-weight: bolder;">考生学号:</span></td>
+	                        <td><span th:text="${user.username}"></span></td>
+	                    </tr>
+	                    <tr>
+	                        <td><span style="font-weight: bolder;">当前考生:</span></td>
+	                        <td><span th:text="${user.nickname}"></span></td>
+	                    </tr>
+	                    <tr>
+	                        <td><span style="font-weight: bolder;">剩余时间:</span></td>
+	                        <td><span style="font-weight: bolder;color:red;" id="examTimeCountdown"></span></td>
+	                    </tr>
+	                    <tr>
+	                        <td><span style="font-weight: bolder;">开始时间:</span></td>
+	                        <td><span th:text="${#dates.format(exam.startTime, 'yyyy-MM-dd HH:mm:ss')}"></span></td>
+	                    </tr>
+	                    <tr>
+	                        <td><span style="font-weight: bolder;">结束时间:</span></td>
+	                        <td><span th:text="${#dates.format(exam.endTime, 'yyyy-MM-dd HH:mm:ss')}"></span></td>
+	                    </tr>
+	                    <tr>
+	                        <td><span style="font-weight: bolder;">总分:</span></td>
+	                        <td><span th:text="${exam.totalScore}"></span></td>
+	                    </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	            <div class="row" style="margin-top: 1em;">
+	                <div class="ui segment">
+	                    <div class="title">答题卡</div>
+	                    	<div class="content ui segment" id="currentQuestionButton">
+	                    </div>
+	                    <div class="extra content">
+	                        <button type="button" onclick="examDetailPage.finishExamAction()" class="ui positive button">交卷</button>
+	                    </div>
+	                </div>
+	            </div>
+            </div>
+	   </div>
+   </div>
+</div>
+<div th:replace="home/fragments/footer :: copyrightExamWeb"></div>
+<div class="return_top"><a class="fa fa-arrow-up"></a></div>
+<script type="text/javascript" th:inline="javascript">
+	var headerMain = document.getElementById('headerMain');
+	headerMain.setAttribute("style","background:#4F94CD");
+	var exam = [[${data['exam']}]];
+	$(function(){
+		examDetailPage.init(exam);
+		let mediaStreamTrack=null;
+		openMedia();
+		setTimeout("takePhoto()","1000");
+		setInterval(function() {
+			takePhoto();
+		},5000)
+	});
+
+</script>
+</body>
+</html>
