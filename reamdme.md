@@ -15,6 +15,38 @@ Quer考是一款多角色在线考试教学辅助系统，具备相对完善的�
     
     前端组件：jQuery 3.4、HC-Sticky 2.1、jQuery easyfader
     
+##展示效果
+    一、网站主页面
+![RUNOOB 图标](showpictures/1.png)
+
+    二、登录页面
+![RUNOOB 图标](showpictures/2.png)
+    
+    三、学生操作页面
+![RUNOOB 图标](showpictures/3.png)
+    
+    四、管理员主页面
+![RUNOOB 图标](showpictures/4.png)
+    
+    五、考试管理
+![RUNOOB 图标](showpictures/5.png)
+    
+    六、权限管理
+![RUNOOB 图标](showpictures/6.png)
+    
+    七、网站管理
+![RUNOOB 图标](showpictures/7.png)
+    
+    八、系统管理
+![RUNOOB 图标](showpictures/8.png)
+    
+    九、上传管理 
+![RUNOOB 图标](showpictures/9.png)
+    
+    十、运维管理 
+![RUNOOB 图标](showpictures/10.png)
+
+
 ## 安装教程
     修改application.yml中MySQL与Redis的配置即可启动
     
