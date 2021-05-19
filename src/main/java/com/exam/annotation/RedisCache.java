@@ -8,7 +8,6 @@ import java.util.concurrent.TimeUnit;
  *
  */
 
-
 @Target({ElementType.METHOD})//注解存在的位置
 @Retention(RetentionPolicy.RUNTIME)//注解存在于运行时
 @Inherited//注解具有继承性

@@ -5,7 +5,6 @@ import org.apache.shiro.util.ByteSource;
 import org.junit.Test;
 
 public class AppTest {
-    @Test
     public void test1(){
         /*加盐*/
         RandomNumberGenerator randomNumberGenerator =new SecureRandomNumberGenerator();
