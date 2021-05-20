@@ -178,7 +178,6 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         cache.put(username,deques);
     }
 
-
     private Session getSessionBysessionId(Serializable sessionId){
         Session kickoutSession = sessionManager.getSession(new DefaultSessionKey(sessionId));
         return kickoutSession;
@@ -278,35 +277,48 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 				User user2 = selectByUsername(username);
 				if(user2 == null) {
 					user.setUsername(username);
+					//姓名
 					String nickname = questionServiceImpl.getCellValue(row.getCell(1));
 					user.setNickname(nickname);
+					//年级
 					String grade = questionServiceImpl.getCellValue(row.getCell(2));
-					user.setGrade(grade);
+                    user.setGrade(grade);
+                    //班级id
 					String classId = questionServiceImpl.getCellValue(row.getCell(3));
 					if(!classId.isEmpty()) {
 						Integer class_id = Integer.parseInt(classId);
 						user.setClassId(class_id);
 					}
+					//性别
 					String sex = questionServiceImpl.getCellValue(row.getCell(4));
 					if(!sex.isEmpty()) {
 						Integer new_sex = Integer.parseInt(sex);
 						user.setSex(new_sex);
 					}
+					//年龄
 					String age = questionServiceImpl.getCellValue(row.getCell(5));
 					if(!age.isEmpty()) {
 						Integer new_age = Integer.parseInt(age);
 						user.setAge(new_age);
 					}
+					//电话
 					String phone = questionServiceImpl.getCellValue(row.getCell(6));
 					user.setPhone(phone);
+					//邮箱
 					String email = questionServiceImpl.getCellValue(row.getCell(7));
 					user.setEmail(email);
+					//个人介绍
 					String description = questionServiceImpl.getCellValue(row.getCell(8));
-					user.setDescription(description);
-					user.setUserId(UUIDUtil.getUniqueIdByUUId());
-					user.setImg(CoreConst.DEFAULT_IMG);
-					user.setStatus(CoreConst.STATUS_VALID);
-					user.setPassword(CoreConst.DEFAULT_PASSWORD);
+                    user.setDescription(description);
+                    //随机生成用户id
+                    user.setUserId(UUIDUtil.getUniqueIdByUUId());
+                    //设置默认头像
+                    user.setImg(CoreConst.DEFAULT_IMG);
+                    //设置默认用户状态
+                    user.setStatus(CoreConst.STATUS_VALID);
+                    //设置默认密码
+                    user.setPassword(CoreConst.DEFAULT_PASSWORD);
+                    //密码加密
 					PasswordHelper.encryptPassword(user);
 					users.add(user);
 				}else {

@@ -2,6 +2,7 @@ package com.exam.service.impl;
 
 import java.util.List;
 
+import com.exam.annotation.RedisCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ public class LinkServiceImpl extends BaseServiceImpl<Link> implements LinkServic
     private LinkMapper linkMapper;
     
     @Override
+//    @RedisCache
     public List<Link>  selectLinks(Link link) {
         return linkMapper.selectLinks(link);
     }
