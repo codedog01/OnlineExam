@@ -244,7 +244,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	public ResponseVo importUserExcel(MultipartFile file) {
 		List<User> users = new ArrayList<>();
 		Workbook workbook = null;
-		//获取文件名
+		//获取上传时文件名
 		String fileName = file.getOriginalFilename();
 		if(fileName.endsWith(XLS)) {
 			try {
@@ -330,7 +330,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		if(j > 0) {
 			return ResultUtil.success("成功导入"+ rows + "名用户");
 		}else {
-			return ResultUtil.error("导入失败");
+			return ResultUtil.error("未读取到有效用户");
 		}
 	}
 

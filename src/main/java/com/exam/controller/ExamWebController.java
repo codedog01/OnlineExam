@@ -228,8 +228,8 @@ public class ExamWebController {
     		love.setSupId(supId);
     		love.setLoveType(loveType);
     		love.setUserId(user.getUserId());
-    		love.setUserIp(ip);
-    		love.setCreateTime(date);
+			love.setUserIp(ip);
+			love.setCreateTime(date);
     		love.setUpdateTime(date);
     		loveService.insert(love);
     		return ResultUtil.success("点赞成功");
