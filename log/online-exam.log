@@ -9330,3 +9330,87 @@ Caused by: org.apache.shiro.UnavailableSecurityManagerException: No SecurityMana
 	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95) ~[thymeleaf-3.0.9.RELEASE.jar:3.0.9.RELEASE]
 	... 54 common frames omitted
 
+2021-05-20 17:10:50.628 DEBUG 15456 --- [http-nio-80-exec-6] c.e.mapper.RoleMapper.findRoleByUserId   : ==>  Preparing: SELECT r.role_id FROM role r LEFT JOIN user_role ur ON r.role_id = ur.role_id WHERE ur.user_id = ? 
+2021-05-20 17:10:50.629 DEBUG 15456 --- [http-nio-80-exec-6] c.e.mapper.RoleMapper.findRoleByUserId   : ==> Parameters: 1000001949385290(String)
+2021-05-20 17:10:50.669 DEBUG 15456 --- [http-nio-80-exec-6] c.e.mapper.RoleMapper.findRoleByUserId   : <==      Total: 2
+2021-05-20 17:10:50.670 DEBUG 15456 --- [http-nio-80-exec-6] c.e.m.P.findPermsByUserId                : ==>  Preparing: SELECT DISTINCT p.perms FROM permission p LEFT JOIN role_permission rp ON p.permission_id = rp.permission_id LEFT JOIN user_role ur on rp.role_id = ur.role_id WHERE ur.user_id = ? and p.perms is not null and p.perms!='' and p.status=1 
+2021-05-20 17:10:50.672 DEBUG 15456 --- [http-nio-80-exec-6] c.e.m.P.findPermsByUserId                : ==> Parameters: 1000001949385290(String)
+2021-05-20 17:10:50.720 DEBUG 15456 --- [http-nio-80-exec-6] c.e.m.P.findPermsByUserId                : <==      Total: 93
+2021-05-20 17:10:52.112 DEBUG 15456 --- [http-nio-80-exec-7] c.e.mapper.CommentMapper.noReadMessage   : ==>  Preparing: SELECT c.nickname, c.avatar, c.content, c.create_time FROM comment c WHERE c.status = 0 order by c.create_time desc 
+2021-05-20 17:10:52.112 DEBUG 15456 --- [http-nio-80-exec-7] c.e.mapper.CommentMapper.noReadMessage   : ==> Parameters: 
+2021-05-20 17:10:52.151 DEBUG 15456 --- [http-nio-80-exec-7] c.e.mapper.CommentMapper.noReadMessage   : <==      Total: 0
+2021-05-20 17:10:52.419 DEBUG 15456 --- [http-nio-80-exec-8] c.e.m.P.selectMenuByUserId               : ==>  Preparing: SELECT DISTINCT p.id, p.permission_id, p.name, p.description, p.url, p.parent_id, p.icon, p.order_num FROM permission p LEFT JOIN role_permission rp ON p.permission_id = rp.permission_id LEFT JOIN user_role ur on rp.role_id = ur.role_id WHERE ur.user_id = ? and p.type in(0,1) and p.status=1 ORDER BY p.order_num 
+2021-05-20 17:10:52.419 DEBUG 15456 --- [http-nio-80-exec-8] c.e.m.P.selectMenuByUserId               : ==> Parameters: 1000001949385290(String)
+2021-05-20 17:10:52.463 DEBUG 15456 --- [http-nio-80-exec-8] c.e.m.P.selectMenuByUserId               : <==      Total: 25
+2021-05-20 17:10:53.312 DEBUG 15456 --- [http-nio-80-exec-9] c.e.m.E.updateExamToStart                : ==>  Preparing: UPDATE examination SET status = 1 WHERE status = 0 AND start_time <= ? AND end_time > ? 
+2021-05-20 17:10:53.314 DEBUG 15456 --- [http-nio-80-exec-9] c.e.m.E.updateExamToStart                : ==> Parameters: 2021-05-20 17:10:53.311(Timestamp), 2021-05-20 17:10:53.311(Timestamp)
+2021-05-20 17:10:53.391 DEBUG 15456 --- [http-nio-80-exec-9] c.e.m.E.updateExamToStart                : <==    Updates: 0
+2021-05-20 17:10:53.392 DEBUG 15456 --- [http-nio-80-exec-9] c.e.m.ExaminationMapper.updateExamToEnd  : ==>  Preparing: UPDATE examination SET status = 2 WHERE status <= 2 AND end_time <= ? 
+2021-05-20 17:10:53.393 DEBUG 15456 --- [http-nio-80-exec-9] c.e.m.ExaminationMapper.updateExamToEnd  : ==> Parameters: 2021-05-20 17:10:53.392(Timestamp)
+2021-05-20 17:10:53.468 DEBUG 15456 --- [http-nio-80-exec-9] c.e.m.ExaminationMapper.updateExamToEnd  : <==    Updates: 3
+2021-05-20 17:10:53.469 DEBUG 15456 --- [http-nio-80-exec-9] com.exam.mapper.QuestionMapper.countNum  : ==>  Preparing: select count(id) questionNums from question 
+2021-05-20 17:10:53.469 DEBUG 15456 --- [http-nio-80-exec-9] com.exam.mapper.QuestionMapper.countNum  : ==> Parameters: 
+2021-05-20 17:10:53.508 DEBUG 15456 --- [http-nio-80-exec-9] com.exam.mapper.QuestionMapper.countNum  : <==      Total: 1
+2021-05-20 17:10:53.508 DEBUG 15456 --- [http-nio-80-exec-9] com.exam.mapper.UserMapper.userNums      : ==>  Preparing: select count(id) userNums from user 
+2021-05-20 17:10:53.508 DEBUG 15456 --- [http-nio-80-exec-9] com.exam.mapper.UserMapper.userNums      : ==> Parameters: 
+2021-05-20 17:10:53.547 DEBUG 15456 --- [http-nio-80-exec-9] com.exam.mapper.UserMapper.userNums      : <==      Total: 1
+2021-05-20 17:10:53.547 DEBUG 15456 --- [http-nio-80-exec-9] com.exam.mapper.SubjectMapper.totalNum   : ==>  Preparing: select count(id) nums from subject 
+2021-05-20 17:10:53.547 DEBUG 15456 --- [http-nio-80-exec-9] com.exam.mapper.SubjectMapper.totalNum   : ==> Parameters: 
+2021-05-20 17:10:53.586 DEBUG 15456 --- [http-nio-80-exec-9] com.exam.mapper.SubjectMapper.totalNum   : <==      Total: 1
+2021-05-20 17:10:53.587 DEBUG 15456 --- [http-nio-80-exec-9] com.exam.mapper.CommentMapper.totalNum   : ==>  Preparing: select count(id) nums FROM comment WHERE status = ? 
+2021-05-20 17:10:53.587 DEBUG 15456 --- [http-nio-80-exec-9] com.exam.mapper.CommentMapper.totalNum   : ==> Parameters: 0(Integer)
+2021-05-20 17:10:53.626 DEBUG 15456 --- [http-nio-80-exec-9] com.exam.mapper.CommentMapper.totalNum   : <==      Total: 1
+2021-05-20 17:10:54.257 DEBUG 15456 --- [http-nio-80-exec-10] c.e.m.ExaminationMapper.recAddExamSta    : ==>  Preparing: select e.title, e.status, e.create_time, u.nickname, u.img from examination e INNER JOIN user u ON e.user_id = u.user_id order by e.create_time desc limit 4 
+2021-05-20 17:10:54.258 DEBUG 15456 --- [http-nio-80-exec-10] c.e.m.ExaminationMapper.recAddExamSta    : ==> Parameters: 
+2021-05-20 17:10:54.298 DEBUG 15456 --- [http-nio-80-exec-10] c.e.m.ExaminationMapper.recAddExamSta    : <==      Total: 3
+2021-05-20 17:10:54.299 DEBUG 15456 --- [http-nio-80-exec-1] c.e.mapper.UserMapper.academyPassNumSta  : ==>  Preparing: SELECT COUNT(u.user_id) AS num, i.institute_name from user u INNER JOIN classes c ON u.class_id = c.id INNER JOIN institute i ON c.ins_id = i.id GROUP BY i.id 
+2021-05-20 17:10:54.300 DEBUG 15456 --- [http-nio-80-exec-1] c.e.mapper.UserMapper.academyPassNumSta  : ==> Parameters: 
+2021-05-20 17:10:54.339 DEBUG 15456 --- [http-nio-80-exec-1] c.e.mapper.UserMapper.academyPassNumSta  : <==      Total: 5
+2021-05-20 17:12:26.880 DEBUG 15456 --- [http-nio-80-exec-5] c.e.mapper.TagMapper.selectTags_COUNT    : ==>  Preparing: SELECT count(0) FROM tag WHERE 1 = 1 
+2021-05-20 17:12:26.881 DEBUG 15456 --- [http-nio-80-exec-5] c.e.mapper.TagMapper.selectTags_COUNT    : ==> Parameters: 
+2021-05-20 17:12:26.917 DEBUG 15456 --- [http-nio-80-exec-5] c.e.mapper.TagMapper.selectTags_COUNT    : <==      Total: 1
+2021-05-20 17:12:26.917 DEBUG 15456 --- [http-nio-80-exec-5] com.exam.mapper.TagMapper.selectTags     : ==>  Preparing: select id, `name`, description, create_time, update_time FROM tag WHERE 1=1 LIMIT ? 
+2021-05-20 17:12:26.918 DEBUG 15456 --- [http-nio-80-exec-5] com.exam.mapper.TagMapper.selectTags     : ==> Parameters: 10(Integer)
+2021-05-20 17:12:26.961 DEBUG 15456 --- [http-nio-80-exec-5] com.exam.mapper.TagMapper.selectTags     : <==      Total: 6
+2021-05-20 17:12:29.762  INFO 15456 --- [http-nio-80-exec-6] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2021-05-20 17:12:36.389 DEBUG 15456 --- [http-nio-80-exec-8] c.e.mapper.LinkMapper.selectLinks_COUNT  : ==>  Preparing: SELECT count(0) FROM link WHERE 1 = 1 
+2021-05-20 17:12:36.390 DEBUG 15456 --- [http-nio-80-exec-8] c.e.mapper.LinkMapper.selectLinks_COUNT  : ==> Parameters: 
+2021-05-20 17:12:36.425 DEBUG 15456 --- [http-nio-80-exec-8] c.e.mapper.LinkMapper.selectLinks_COUNT  : <==      Total: 1
+2021-05-20 17:12:36.426 DEBUG 15456 --- [http-nio-80-exec-8] com.exam.mapper.LinkMapper.selectLinks   : ==>  Preparing: select id,`name`, url, description, img, email, qq, status, origin, remark, create_time, update_time FROM link WHERE 1=1 LIMIT ? 
+2021-05-20 17:12:36.426 DEBUG 15456 --- [http-nio-80-exec-8] com.exam.mapper.LinkMapper.selectLinks   : ==> Parameters: 10(Integer)
+2021-05-20 17:12:36.460 DEBUG 15456 --- [http-nio-80-exec-8] com.exam.mapper.LinkMapper.selectLinks   : <==      Total: 3
+2021-05-20 17:12:38.240  INFO 15456 --- [http-nio-80-exec-9] com.exam.aspect.RedisCacheAspect         : exam_com_exam_service_impl_SysConfigServiceImpl_selectAll()从缓存中获取数据
+2021-05-20 17:41:13.600  INFO 15456 --- [SessionValidationThread-1] a.s.s.m.AbstractValidatingSessionManager : Validating all active sessions...
+2021-05-20 17:41:13.708  INFO 15456 --- [SessionValidationThread-1] a.s.s.m.AbstractValidatingSessionManager : Finished session validation.  No sessions were stopped.
+2021-05-20 18:41:13.599  INFO 15456 --- [SessionValidationThread-1] a.s.s.m.AbstractValidatingSessionManager : Validating all active sessions...
+2021-05-20 18:41:13.670  INFO 15456 --- [SessionValidationThread-1] a.s.s.m.AbstractValidatingSessionManager : Finished session validation.  No sessions were stopped.
+2021-05-20 18:57:50.147  INFO 15456 --- [lettuce-nioEventLoop-4-1] io.lettuce.core.protocol.CommandHandler  : null Unexpected exception during request: java.io.IOException: 远程主机强迫关闭了一个现有的连接。
+
+java.io.IOException: 远程主机强迫关闭了一个现有的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method) ~[na:1.8.0_152]
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:43) ~[na:1.8.0_152]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223) ~[na:1.8.0_152]
+	at sun.nio.ch.IOUtil.read(IOUtil.java:192) ~[na:1.8.0_152]
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380) ~[na:1.8.0_152]
+	at io.netty.buffer.PooledUnsafeDirectByteBuf.setBytes(PooledUnsafeDirectByteBuf.java:288) ~[netty-buffer-4.1.24.Final.jar:4.1.24.Final]
+	at io.netty.buffer.AbstractByteBuf.writeBytes(AbstractByteBuf.java:1108) ~[netty-buffer-4.1.24.Final.jar:4.1.24.Final]
+	at io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:345) ~[netty-transport-4.1.24.Final.jar:4.1.24.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:148) ~[netty-transport-4.1.24.Final.jar:4.1.24.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:645) [netty-transport-4.1.24.Final.jar:4.1.24.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:580) [netty-transport-4.1.24.Final.jar:4.1.24.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:497) [netty-transport-4.1.24.Final.jar:4.1.24.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:459) [netty-transport-4.1.24.Final.jar:4.1.24.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:884) [netty-common-4.1.24.Final.jar:4.1.24.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) [netty-common-4.1.24.Final.jar:4.1.24.Final]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_152]
+
+2021-05-20 18:57:50.262  INFO 15456 --- [lettuce-eventExecutorLoop-1-1] i.l.core.protocol.ConnectionWatchdog     : Reconnecting, last destination was /121.43.163.177:6379
+2021-05-20 18:57:50.304  INFO 15456 --- [lettuce-nioEventLoop-4-2] i.l.core.protocol.ReconnectionHandler    : Reconnected to 121.43.163.177:6379
+2021-05-20 19:41:13.599  INFO 15456 --- [SessionValidationThread-1] a.s.s.m.AbstractValidatingSessionManager : Validating all active sessions...
+2021-05-20 19:41:13.666  INFO 15456 --- [SessionValidationThread-1] a.s.s.m.AbstractValidatingSessionManager : Finished session validation.  No sessions were stopped.
+2021-05-20 20:41:13.598  INFO 15456 --- [SessionValidationThread-1] a.s.s.m.AbstractValidatingSessionManager : Validating all active sessions...
+2021-05-20 20:41:13.668  INFO 15456 --- [SessionValidationThread-1] a.s.s.m.AbstractValidatingSessionManager : Finished session validation.  No sessions were stopped.
+2021-05-20 21:41:13.600  INFO 15456 --- [SessionValidationThread-1] a.s.s.m.AbstractValidatingSessionManager : Validating all active sessions...
+2021-05-20 21:41:13.745  INFO 15456 --- [SessionValidationThread-1] a.s.s.m.AbstractValidatingSessionManager : Finished session validation.  No sessions were stopped.
+2021-05-20 22:10:26.007  INFO 15456 --- [Thread-16] a.s.s.m.AbstractValidatingSessionManager : Disabled session validation scheduler.
+2021-05-20 22:10:26.020  INFO 15456 --- [Thread-16] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
