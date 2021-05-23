@@ -4,14 +4,12 @@
  Source Server         : 冷澳的阿里云
  Source Server Type    : MySQL
  Source Server Version : 80016
- Source Host           : 121.43.163.177:3306
- Source Schema         : exam
 
  Target Server Type    : MySQL
  Target Server Version : 80016
  File Encoding         : 65001
 
- Date: 13/05/2021 19:42:30
+ Date: 23/04/2021 11:14:45
 */
 
 SET NAMES utf8mb4;
@@ -76,7 +74,7 @@ CREATE TABLE `comment`  (
   `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `pid`(`pid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of comment
@@ -88,7 +86,9 @@ INSERT INTO `comment` VALUES (5, -1, '1000000176946191', NULL, '2018211131', '�
 INSERT INTO `comment` VALUES (6, -1, '1000001949385290', 5, NULL, '冷 澳', 'https://img-blog.csdnimg.cn/20210428091150478.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDg4NDMwNQ==,size_16,color_FFFFFF,t_70#pic_center', '841423155@qq.com', NULL, 1, '223.104.249.243', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>加油</p>\r\n', NULL, 0, 0, '2021-04-28 16:27:36', '2021-04-28 16:27:36');
 INSERT INTO `comment` VALUES (9, -1, '1000000176946191', NULL, '2018211131', '张 波', '', '', NULL, 1, '183.64.128.82', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>有人吗？</p>', NULL, 0, 0, '2021-04-29 08:48:07', '2021-04-29 08:48:07');
 INSERT INTO `comment` VALUES (10, -1, '1000001949385290', 9, NULL, '冷 澳', 'https://img-blog.csdnimg.cn/20210428091150478.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDg4NDMwNQ==,size_16,color_FFFFFF,t_70#pic_center', '841423155@qq.com', NULL, 1, '183.64.128.82', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>你好！</p>\r\n', NULL, 0, 0, '2021-04-29 08:49:08', '2021-04-29 08:49:08');
-INSERT INTO `comment` VALUES (12, -1, '1000001949385290', NULL, 'aoaoao', '冷 澳', 'https://img-blog.csdnimg.cn/20210428091150478.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDg4NDMwNQ==,size_16,color_FFFFFF,t_70#pic_center', '841423155@qq.com', NULL, 2, '183.64.128.82', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>Hello Quer考！</p>', NULL, 0, 0, '2021-04-29 11:55:46', '2021-04-29 11:55:46');
+INSERT INTO `comment` VALUES (13, -1, '1000001949385290', 3, NULL, '冷 澳', 'https://img-blog.csdnimg.cn/20210428091150478.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDg4NDMwNQ==,size_16,color_FFFFFF,t_70#pic_center', '841423155@qq.com', NULL, 1, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>123</p>\r\n', NULL, 0, 0, '2021-05-20 08:21:36', '2021-05-20 08:21:36');
+INSERT INTO `comment` VALUES (14, -1, '1000001949385290', 5, NULL, '冷 澳', 'https://img-blog.csdnimg.cn/20210428091150478.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDg4NDMwNQ==,size_16,color_FFFFFF,t_70#pic_center', '841423155@qq.com', NULL, 1, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>123123</p>\r\n', NULL, 0, 0, '2021-05-20 08:21:54', '2021-05-20 08:21:54');
+INSERT INTO `comment` VALUES (15, -1, '1000001949385290', 14, 'aoaoao', '冷 澳', 'https://img-blog.csdnimg.cn/20210428091150478.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDg4NDMwNQ==,size_16,color_FFFFFF,t_70#pic_center', '841423155@qq.com', NULL, 1, '0:0:0:0:0:0:0:1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '<p>123</p>', NULL, 0, 0, '2021-05-20 08:24:55', '2021-05-20 08:24:55');
 
 -- ----------------------------
 -- Table structure for exam_question
@@ -99,7 +99,7 @@ CREATE TABLE `exam_question`  (
   `exam_id` int(10) UNSIGNED NOT NULL COMMENT '考试ID',
   `question_id` int(10) UNSIGNED NOT NULL COMMENT '考题ID',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 553 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 563 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of exam_question
@@ -191,6 +191,16 @@ INSERT INTO `exam_question` VALUES (309, 32, 84);
 INSERT INTO `exam_question` VALUES (310, 32, 85);
 INSERT INTO `exam_question` VALUES (311, 33, 87);
 INSERT INTO `exam_question` VALUES (312, 33, 88);
+INSERT INTO `exam_question` VALUES (553, 56, 78);
+INSERT INTO `exam_question` VALUES (554, 56, 79);
+INSERT INTO `exam_question` VALUES (555, 56, 80);
+INSERT INTO `exam_question` VALUES (556, 56, 81);
+INSERT INTO `exam_question` VALUES (557, 56, 82);
+INSERT INTO `exam_question` VALUES (558, 56, 83);
+INSERT INTO `exam_question` VALUES (559, 56, 91);
+INSERT INTO `exam_question` VALUES (560, 56, 92);
+INSERT INTO `exam_question` VALUES (561, 56, 93);
+INSERT INTO `exam_question` VALUES (562, 56, 94);
 
 -- ----------------------------
 -- Table structure for examination
@@ -211,7 +221,7 @@ CREATE TABLE `examination`  (
   `end_time` timestamp(0) NULL DEFAULT NULL COMMENT '考试结束时间',
   `status` int(11) NULL DEFAULT 0 COMMENT '进行状态:0表示未开始,1表示进行中,2表示考试已经结束,3表示该考试已经完成批卷',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 56 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 57 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of examination
@@ -219,6 +229,7 @@ CREATE TABLE `examination`  (
 INSERT INTO `examination` VALUES (30, 'C语言程序设计', '1000001949385290', '冷 澳', '2018', 19, 11, 1, '2021-04-28 06:39:20', '2021-04-28 10:39:40', '2021-04-28 06:39:00', '2021-04-28 10:35:00', 2);
 INSERT INTO `examination` VALUES (32, '数据库', '1000001949385290', '冷 澳', '2018', 4, 11, 3, '2021-04-28 11:51:56', '2021-05-02 07:58:42', '2021-04-30 12:55:00', '2021-04-30 14:50:00', 2);
 INSERT INTO `examination` VALUES (33, 'Python程序设计', '1000001949385290', '冷 澳', '2018', 4, 11, 6, '2021-04-28 11:53:07', '2021-05-02 07:58:42', '2021-05-01 11:50:00', '2021-05-01 14:30:00', 2);
+INSERT INTO `examination` VALUES (56, 'C语言程序设计', '1000001949385290', '冷 澳', '2018', 19, 11, 1, '2021-05-21 05:05:05', '2021-05-21 08:47:13', '2021-05-21 05:04:00', '2021-05-21 06:05:00', 2);
 
 -- ----------------------------
 -- Table structure for grade
@@ -243,69 +254,6 @@ CREATE TABLE `grade`  (
 -- ----------------------------
 -- Records of grade
 -- ----------------------------
-INSERT INTO `grade` VALUES (1, '1', '4', 2, 2, 0, 'A~_~B~_~B~_~~_~null~_~B~_~null~_~null~_~null~_~null~_~null~_~~_~~_~~_~null~_~', '~_~~_~~_~~_~~_~null~_~null~_~erewrf~_~', 'A~_~B~_~B~_~~_~null~_~B~_~null~_~null~_~null~_~null~_~null~_~~_~~_~~_~~_~~_~~_~~_~~_~null~_~null~_~null~_~erewrf', '2019-06-12 21:22:35', '2019-06-12 21:22:35', 0);
-INSERT INTO `grade` VALUES (2, '1000001016959144', '11', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-26 06:40:42', '2021-04-26 06:40:42', 0);
-INSERT INTO `grade` VALUES (3, '1000001016959144', '10', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-26 06:48:32', '2021-04-26 06:48:32', 0);
-INSERT INTO `grade` VALUES (4, '1000001016959144', '9', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-26 06:59:58', '2021-04-26 06:59:58', 0);
-INSERT INTO `grade` VALUES (5, '1000001016959144', '8', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-26 13:51:45', '2021-04-26 13:51:45', 0);
-INSERT INTO `grade` VALUES (6, '1000001016959144', '8', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-26 13:51:46', '2021-04-26 13:51:46', 0);
-INSERT INTO `grade` VALUES (7, '1000001016959144', '7', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-26 14:01:09', '2021-04-26 14:01:09', 0);
-INSERT INTO `grade` VALUES (8, '1000001016959144', '6', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-26 14:03:39', '2021-04-26 14:03:39', 0);
-INSERT INTO `grade` VALUES (9, '1000001016959144', '6', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-26 14:04:28', '2021-04-26 14:04:28', 0);
-INSERT INTO `grade` VALUES (10, '1000001016959144', '5', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-26 14:15:14', '2021-04-26 14:15:14', 0);
-INSERT INTO `grade` VALUES (11, '1000001016959144', '5', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-26 14:19:59', '2021-04-26 14:19:59', 0);
-INSERT INTO `grade` VALUES (12, '1000001016959144', '15', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', '', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-26 14:33:58', '2021-04-26 14:33:58', 0);
-INSERT INTO `grade` VALUES (13, '1000001949385290', '16', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', '', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-27 01:06:27', '2021-04-27 01:06:27', 0);
-INSERT INTO `grade` VALUES (14, '1000000176946191', '16', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', '', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-27 02:37:51', '2021-04-27 02:37:51', 0);
-INSERT INTO `grade` VALUES (15, '1000001949385290', '17', 1, 0, 0, '~_~null~_~null~_~null~_~null~_~', '', '~_~null~_~null~_~null~_~null', '2021-04-27 02:42:08', '2021-04-27 02:42:08', 0);
-INSERT INTO `grade` VALUES (16, '1000001949385290', '18', 0, 0, 0, '~_~null~_~', '', '~_~null', '2021-04-27 02:45:33', '2021-04-27 02:45:33', 0);
-INSERT INTO `grade` VALUES (17, '1000001949385290', '18', 0, 0, 0, '~_~null~_~', '', '~_~null', '2021-04-27 02:45:33', '2021-04-27 02:45:33', 0);
-INSERT INTO `grade` VALUES (18, '1000000104321715', '17', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~', '', '~_~null~_~null~_~null~_~null', '2021-04-27 02:46:01', '2021-04-27 02:46:01', 0);
-INSERT INTO `grade` VALUES (19, '1000000104321715', '18', 0, 0, 0, '~_~null~_~', '', '~_~null', '2021-04-27 02:52:59', '2021-04-27 02:52:59', 0);
-INSERT INTO `grade` VALUES (20, '1000000104321715', '18', 0, 0, 0, '~_~null~_~', '', '~_~null', '2021-04-27 02:53:00', '2021-04-27 02:53:00', 0);
-INSERT INTO `grade` VALUES (21, '1000000121366369', '16', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', '', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-27 02:55:41', '2021-04-27 02:55:41', 0);
-INSERT INTO `grade` VALUES (22, '1000000121366369', '16', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', '', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-27 02:55:41', '2021-04-27 02:55:41', 0);
-INSERT INTO `grade` VALUES (23, '1000000121366369', '18', 0, 0, 0, 'A~_~null~_~', '', 'A~_~null', '2021-04-27 02:56:03', '2021-04-27 02:56:03', 0);
-INSERT INTO `grade` VALUES (24, '1000000121366369', '18', 0, 0, 0, 'A~_~null~_~', '', 'A~_~null', '2021-04-27 02:56:03', '2021-04-27 02:56:03', 0);
-INSERT INTO `grade` VALUES (25, '1000000121366369', '17', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~', '', '~_~null~_~null~_~null~_~null', '2021-04-27 02:56:20', '2021-04-27 02:56:20', 0);
-INSERT INTO `grade` VALUES (26, '1000000121366369', '17', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~', '', '~_~null~_~null~_~null~_~null', '2021-04-27 02:56:21', '2021-04-27 02:56:21', 0);
-INSERT INTO `grade` VALUES (27, '1000000104321715', '19', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', '', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-27 03:09:31', '2021-04-27 03:09:31', 0);
-INSERT INTO `grade` VALUES (28, '1000000104321715', '19', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', '', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-27 03:09:31', '2021-04-27 03:09:31', 0);
-INSERT INTO `grade` VALUES (29, '1000000176946191', '20', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', '', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-27 09:20:47', '2021-04-27 09:20:47', 0);
-INSERT INTO `grade` VALUES (30, '1000000176946191', '20', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', '', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-27 09:20:48', '2021-04-27 09:20:48', 0);
-INSERT INTO `grade` VALUES (31, '1000000104321715', '20', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', '', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-27 09:26:43', '2021-04-27 09:26:43', 0);
-INSERT INTO `grade` VALUES (32, '1000000104321715', '20', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', '', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-27 09:26:43', '2021-04-27 09:26:43', 0);
-INSERT INTO `grade` VALUES (33, '1000001949385290', '37', 2, 2, 0, 'C~_~A~_~B~_~B~_~C~_~null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'C~_~A~_~B~_~B~_~C~_~null~_~~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-28 15:11:39', '2021-04-28 15:11:39', 0);
-INSERT INTO `grade` VALUES (34, '1000000176946191', '37', 0, 0, 0, 'A~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'A~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-28 15:13:52', '2021-04-28 15:13:52', 0);
-INSERT INTO `grade` VALUES (35, '1000000176946191', '38', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-28 15:14:13', '2021-04-28 15:14:13', 0);
-INSERT INTO `grade` VALUES (36, '1000001949385290', '39', 0, 0, 0, '~_~', '', '', '2021-04-28 15:16:45', '2021-04-28 15:16:45', 0);
-INSERT INTO `grade` VALUES (37, '1000000104321715', '40', 0, 0, 0, '~_~null~_~null~_~', '', '~_~null~_~null', '2021-04-29 07:07:30', '2021-04-29 07:07:30', 0);
-INSERT INTO `grade` VALUES (38, '1000001949385290', '41', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', '', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-29 09:14:20', '2021-04-29 09:14:20', 0);
-INSERT INTO `grade` VALUES (39, '1000001949385290', '42', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-29 09:20:18', '2021-04-29 09:20:18', 0);
-INSERT INTO `grade` VALUES (40, '1000001949385290', '43', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-29 09:51:02', '2021-04-29 09:51:02', 0);
-INSERT INTO `grade` VALUES (41, '1000001949385290', '43', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-29 09:51:03', '2021-04-29 09:51:03', 0);
-INSERT INTO `grade` VALUES (42, '1000001949385290', '40', 0, 0, 0, '~_~null~_~null~_~', '', '~_~null~_~null', '2021-04-29 09:55:58', '2021-04-29 09:55:58', 0);
-INSERT INTO `grade` VALUES (43, '1000001949385290', '40', 0, 0, 0, '~_~null~_~null~_~', '', '~_~null~_~null', '2021-04-29 09:55:59', '2021-04-29 09:55:59', 0);
-INSERT INTO `grade` VALUES (44, '1000001949385290', '45', 0, 0, 0, 'A~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~null~_~', 'A~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-29 11:48:37', '2021-04-29 11:48:37', 0);
-INSERT INTO `grade` VALUES (45, '1000001949385290', '45', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-29 11:48:40', '2021-04-29 11:48:40', 0);
-INSERT INTO `grade` VALUES (46, '1000001949385290', '46', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-29 11:51:46', '2021-04-29 11:51:46', 0);
-INSERT INTO `grade` VALUES (47, '1000001949385290', '47', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-29 12:09:30', '2021-04-29 12:09:30', 0);
-INSERT INTO `grade` VALUES (48, '1000001949385290', '48', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-29 12:21:01', '2021-04-29 12:21:01', 0);
-INSERT INTO `grade` VALUES (49, '1000001949385290', '49', 0, 0, 0, 'null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', '~_~null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-29 12:26:11', '2021-04-29 12:26:11', 0);
-INSERT INTO `grade` VALUES (50, '1000001949385290', '49', 0, 0, 0, 'null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', '~_~null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-29 12:26:12', '2021-04-29 12:26:12', 0);
-INSERT INTO `grade` VALUES (51, '1000001949385290', '50', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-29 12:29:08', '2021-04-29 12:29:08', 0);
-INSERT INTO `grade` VALUES (52, '1000001949385290', '50', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-29 12:29:10', '2021-04-29 12:29:10', 0);
-INSERT INTO `grade` VALUES (53, '1000001949385290', '50', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-29 12:29:11', '2021-04-29 12:29:11', 0);
-INSERT INTO `grade` VALUES (54, '1000001949385290', '51', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-29 12:34:53', '2021-04-29 12:34:53', 0);
-INSERT INTO `grade` VALUES (55, '1000001949385290', '52', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-29 12:37:27', '2021-04-29 12:37:27', 0);
-INSERT INTO `grade` VALUES (56, '1000001949385290', '53', 0, 0, 0, 'B~_~', '', 'B', '2021-04-29 13:20:38', '2021-04-29 13:20:38', 0);
-INSERT INTO `grade` VALUES (57, '1000001949385290', '54', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-04-29 13:41:41', '2021-04-29 13:41:41', 0);
-INSERT INTO `grade` VALUES (58, '1000000121366369', '55', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-05-05 06:07:54', '2021-05-05 06:07:54', 0);
-INSERT INTO `grade` VALUES (59, '1000000121366369', '55', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-05-05 06:07:54', '2021-05-05 06:07:54', 0);
-INSERT INTO `grade` VALUES (60, '1000000121366369', '55', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-05-05 06:09:19', '2021-05-05 06:09:19', 0);
-INSERT INTO `grade` VALUES (61, '1000000121366369', '55', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-05-05 06:09:19', '2021-05-05 06:09:19', 0);
-INSERT INTO `grade` VALUES (62, '1000000121366369', '55', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-05-05 06:10:16', '2021-05-05 06:10:16', 0);
-INSERT INTO `grade` VALUES (63, '1000000121366369', '55', 0, 0, 0, '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~', 'null~_~null~_~', '~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null~_~null', '2021-05-05 06:10:16', '2021-05-05 06:10:16', 0);
 
 -- ----------------------------
 -- Table structure for institute
@@ -1076,13 +1024,13 @@ CREATE TABLE `user`  (
   `last_login_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '最后登录时间',
   PRIMARY KEY (`id`, `user_id`) USING BTREE,
   INDEX `user_id`(`user_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 64 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (2, '1000001949385290', 11, 'lengao', 'aoaoao', '8871bb26017a42b663e318a3313c1c5b', '', 'fefd468b87c8f8469e89d7bf201cc6a4', '2018', '冷 澳', '841423155@qq.com', '15733593820', 1, 22, 'https://img-blog.csdnimg.cn/20210428091150478.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDg4NDMwNQ==,size_16,color_FFFFFF,t_70#pic_center', 1, '2021-04-26 06:25:57', '2021-04-28 03:48:02', '2021-05-13 09:54:24');
-INSERT INTO `user` VALUES (7, '1000000104321715', 11, NULL, 'taotao', '747fec20d33bc3ada4a0c96f30f327ce', '', 'b362a917f1bbe0af704f9108208cc6b1', '2018', '涛 涛', '', '', 1, NULL, '/img/user-default.png', 1, '2021-04-26 08:41:17', '2021-04-28 06:48:15', '2021-05-11 12:46:15');
+INSERT INTO `user` VALUES (2, '1000001949385290', 11, 'lengao', 'aoaoao', '8871bb26017a42b663e318a3313c1c5b', '', 'fefd468b87c8f8469e89d7bf201cc6a4', '2018', '冷 澳', '', '', 1, 22, 'https://img-blog.csdnimg.cn/20210428091150478.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDg4NDMwNQ==,size_16,color_FFFFFF,t_70#pic_center', 1, '2021-04-26 06:25:57', '2021-05-20 04:18:16', '2021-05-22 15:40:53');
+INSERT INTO `user` VALUES (7, '1000000104321715', 11, NULL, 'taotao', '747fec20d33bc3ada4a0c96f30f327ce', '', 'b362a917f1bbe0af704f9108208cc6b1', '2018', '涛 涛', '', '', 1, NULL, 'https://img-blog.csdnimg.cn/20210424154958696.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTIzODc2MQ==,size_16,color_FFFFFF,t_70', 1, '2021-04-26 08:41:17', '2021-04-28 06:48:15', '2021-05-22 15:38:39');
 INSERT INTO `user` VALUES (9, '1000000709878559', 11, NULL, 'DBA', 'f34b12450770dc77ed0f921bf336968c', NULL, '25325e1c1d6a62c0beac64c9ac3d24eb', '2018', 'DBA', '', '', 1, NULL, NULL, 1, '2021-04-26 08:42:38', '2021-04-28 03:12:50', '2021-04-26 09:50:25');
 INSERT INTO `user` VALUES (10, '1000001157479099', 16, NULL, 'xiaoxiao', '9f3e3925cdfd468bc319a3df3bd6776b', NULL, '8ec5926d626d3a554f29daf1c8e1e914', '2017', '潇潇潇', '', '', 2, NULL, NULL, 1, '2021-04-26 08:43:22', '2021-04-28 03:13:23', '2021-04-26 08:43:22');
 INSERT INTO `user` VALUES (11, '1000000839346914', 16, NULL, 'keke', '97c8eb421d5a8e1fac366936ea225ff5', NULL, '17ba77fd5898c32c9d0f6da0e1f3d2dd', '2015', '柯柯柯', '', '', 1, NULL, NULL, 1, '2021-04-26 08:43:42', '2021-04-28 03:13:36', '2021-04-26 08:43:42');
@@ -1099,10 +1047,8 @@ INSERT INTO `user` VALUES (22, '1000000860608860', 13, NULL, '2018211810', 'b029
 INSERT INTO `user` VALUES (23, '1000001198613152', 13, NULL, '2018211811', 'fcdd0b5263c42d989f16d8efcb89fc8a', NULL, '06438f16afef1f1e569b9b8566ba4486', '2018', '付发发', '', '', 1, NULL, '/img/user-default.png', 1, '2021-04-26 09:07:36', '2021-04-26 09:07:36', '2021-04-26 09:07:36');
 INSERT INTO `user` VALUES (24, '1000001829403433', 13, NULL, '2018211813', '1ffa7134a495520da35343c18e1afbbe', NULL, 'f26984eabdd2c905f8fdcfcc1864e21b', '2018', '代平平', '', '', 1, NULL, '/img/user-default.png', 1, '2021-04-26 09:08:53', '2021-04-26 09:08:53', '2021-04-26 09:08:53');
 INSERT INTO `user` VALUES (25, '1000001874993044', 11, NULL, '2018211814', '3e6544a76e19f7ea8c18f520ff2b1101', NULL, '18692bab71ed53aa5ee16fc00ac724b8', '2018', '舒小鹏', '', '', 1, NULL, '/img/user-default.png', 1, '2021-04-26 09:25:43', '2021-04-26 09:25:43', '2021-04-26 10:11:13');
-INSERT INTO `user` VALUES (30, '1000000176946191', 13, NULL, '2018211131', '310c2f8d88348e218c591bd92b943ccc', '', 'f83baba49340c608f7571912098cef2f', '2018', '张 波', '', '', 1, 22, '', 1, '2021-04-27 00:51:22', '2021-04-28 16:24:39', '2021-05-03 09:13:54');
-INSERT INTO `user` VALUES (31, '1000000121366369', 10, NULL, 'lanlan', 'c64bda3175555d61e12d0b5a8116cfe1', NULL, 'b4cc1ee0258260ffc88dc65c827e4270', '2018', '赵岚岚', '', '', 2, NULL, NULL, 1, '2021-04-27 02:53:56', '2021-04-28 03:12:41', '2021-05-11 11:42:28');
-INSERT INTO `user` VALUES (35, '1000001056548025', 11, NULL, '2018211140', 'e8a13e8213a365efef982a44cb2e3aca', NULL, 'dfc404130eead4ae7f42fad102a8e9c2', '2018', '张德帅', '', '', 0, NULL, '/img/user-default.png', 1, '2021-04-28 16:11:17', '2021-04-28 16:11:17', '2021-04-28 16:11:17');
-INSERT INTO `user` VALUES (36, '1000001693253255', 10, NULL, 'admin', '887f33c653afa1778aa75a76c599f6e4', NULL, '390a64803844a4eb1344dc3f8535b716', '2018', 'admin', '', '', 1, NULL, '/img/user-default.png', 1, '2021-05-10 09:46:28', '2021-05-10 09:46:28', '2021-05-10 09:51:08');
+INSERT INTO `user` VALUES (30, '1000000176946191', 13, NULL, '2018211131', '310c2f8d88348e218c591bd92b943ccc', '', 'f83baba49340c608f7571912098cef2f', '2018', '张 波', '', '', 1, 22, '', 1, '2021-04-27 00:51:22', '2021-04-28 16:24:39', '2021-05-19 12:30:20');
+INSERT INTO `user` VALUES (31, '1000000121366369', 10, NULL, 'lanlan', 'c64bda3175555d61e12d0b5a8116cfe1', NULL, 'b4cc1ee0258260ffc88dc65c827e4270', '2018', '赵岚岚', '', '', 2, NULL, 'https://img-blog.csdnimg.cn/20210522233706516.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTIzODc2MQ==,size_16,color_FFFFFF,t_70', 1, '2021-04-27 02:53:56', '2021-04-28 03:12:41', '2021-05-22 15:38:10');
 
 -- ----------------------------
 -- Table structure for user_role
@@ -1114,7 +1060,7 @@ CREATE TABLE `user_role`  (
   `role_id` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色id',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `pri2`(`role_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 47 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 57 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user_role
@@ -1151,5 +1097,15 @@ INSERT INTO `user_role` VALUES (43, '1000000104321715', '1');
 INSERT INTO `user_role` VALUES (44, '1000001949385290', '1');
 INSERT INTO `user_role` VALUES (45, '1000001949385290', '2');
 INSERT INTO `user_role` VALUES (46, '1000001693253255', '1000001673944386');
+INSERT INTO `user_role` VALUES (47, '1000001056548025', '3');
+INSERT INTO `user_role` VALUES (48, '1000001287007188', '3');
+INSERT INTO `user_role` VALUES (49, '1000000227485853', '3');
+INSERT INTO `user_role` VALUES (50, '1000000106047661', '3');
+INSERT INTO `user_role` VALUES (51, '1000001388096792', '3');
+INSERT INTO `user_role` VALUES (52, '1000001317159518', '3');
+INSERT INTO `user_role` VALUES (53, '1000001301200003', '3');
+INSERT INTO `user_role` VALUES (54, '1000000074983968', '3');
+INSERT INTO `user_role` VALUES (55, '1000000984228650', '3');
+INSERT INTO `user_role` VALUES (56, '1000000269616385', '3');
 
 SET FOREIGN_KEY_CHECKS = 1;
