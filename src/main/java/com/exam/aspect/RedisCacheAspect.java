@@ -62,4 +62,5 @@ public class RedisCacheAspect {
         logger.info("{}从数据库中获取数据", key);
         return result;
     }
+
 }
