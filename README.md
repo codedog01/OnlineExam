@@ -50,7 +50,7 @@ Quer考是一款多角色在线考试教学辅助系统，具备相对完善的�
 
 ## 安装教程
 
-    导入sql语句后修改application.yml中MySQL与Redis的配置即可启动
+    创建数据库，导入sql语句。修改application.yml中MySQL与Redis的配置即可启动
     
     注意版本信息，此项目中使用的十MySQL8.0.x
   
